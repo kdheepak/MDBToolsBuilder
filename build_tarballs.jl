@@ -26,7 +26,7 @@ make install
 
 # These are the platforms we will build for by default, unless further
 # platforms are passed in on the command line
-platforms = supported_platforms(exclude = [Windows(:i686), Windows(:x86_64)])
+platforms = supported_platforms()
 
 # The products that we will ensure are always built
 products = [
@@ -40,8 +40,8 @@ products = [
     ExecutableProduct("mdb-header", :mdb_header),
     ExecutableProduct("mdb-export", :mdb_export),
     ExecutableProduct("mdb-hexdump", :mdb_hexdump),
-    LibraryProduct("libmdbsql", :libmdbsql),
-    LibraryProduct("libmdb", :libmdb),
+    # LibraryProduct("libmdbsql", :libmdbsql),
+    # LibraryProduct("libmdb", :libmdb),
     ExecutableProduct("mdb-array", :mdb_array)
 ]
 
