@@ -1,0 +1,30 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-latest
+          - ubuntu-latest
+            # - windows-latest
+    env:
+      NIM_VERSION: 'stable'
+    steps:
+    - uses: actions/checkout@v1
+    - uses: jiro4989/setup-nim-action@v1
+      with:
+        nim-version: ${{ env.NIM_VERSION }}
+    - name: Install binary builder downloader
+      run: nimble install https://github.com/kdheepak/binary-builder-downloader -y
+    - name: Install mdbtools
+      run: bbd download --package mdbtools --install 'mdbtools${{ matrix.os }}'
+    - name: Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: 'mdbtools${{ matrix.os }}'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
