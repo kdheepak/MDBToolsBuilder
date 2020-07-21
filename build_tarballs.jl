@@ -7,7 +7,8 @@ version = v"0.8.2"
 
 # Collection of sources required to complete build
 sources = [
-    GitSource("https://github.com/cyberemissary/mdbtools.git", "b753ff36a0f1d88ae8a300ed6712f4aa2ddb7d08")
+    GitSource("https://github.com/cyberemissary/mdbtools.git", "b753ff36a0f1d88ae8a300ed6712f4aa2ddb7d08"),
+    DirectorySource("./bundled"),
 ]
 
 # Bash recipe for building across all platforms
