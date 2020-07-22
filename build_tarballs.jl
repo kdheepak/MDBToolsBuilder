@@ -19,7 +19,7 @@ if [ $target = "x86_64-w64-mingw32" ] || [ $target = "i686-w64-mingw32" ]; then
     atomic_patch -p1 "${WORKSPACE}/srcdir/patches/locale_header.patch"
 fi
 autoreconf -if
-./configure --prefix=${prefix} --build=${MACHTYPE} --host=${target} --disable-man
+./configure --prefix=${prefix} --build=${MACHTYPE} --host=${target} --disable-man --enable-shared
 make -j${nproc}
 make install
 """
